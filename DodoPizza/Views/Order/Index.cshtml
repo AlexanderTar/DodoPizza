@@ -1,0 +1,63 @@
+﻿@using DodoPizza.Models
+@model IEnumerable<DodoPizza.ViewModels.OrderView>
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<br/>
+
+<p>
+    @Html.ActionLink("All", "Index") |
+    @Html.ActionLink("New", "Index", new {status = OrderStatus.New}) |
+    @Html.ActionLink("Queued", "Index", new { status = OrderStatus.Queued }) |
+    @Html.ActionLink("In progress", "Index", new { status = OrderStatus.InProgress }) |
+    @Html.ActionLink("Ready", "Index", new { status = OrderStatus.Ready }) |
+    @Html.ActionLink("In delivery", "Index", new { status = OrderStatus.InDelivery }) |
+    @Html.ActionLink("Delivered", "Index", new { status = OrderStatus.Delivered }) |
+    @Html.ActionLink("In restaurant", "Index", new { status = OrderStatus.InRestaurant })
+</p>
+
+<h2>Orders</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
